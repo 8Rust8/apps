@@ -1,7 +1,8 @@
-
 #![allow(unused)]
 
 use todo::App;
 fn main() {
-    yew::Renderer::<App>::new().render();
+    // Renderer syntax is for 20 release
+    // yew::Renderer::<App>::new().render();
+    yew::start_app::<App>();
 }

@@ -1,10 +1,15 @@
 #![allow(unused)]
 use gloo::console::log;
 use serde::{Deserialize, Serialize};
-use stylist::style;
 use stylist::yew::styled_component;
+use stylist::{style, Style};
 use yew::prelude::*;
 use yew::{classes, html};
+
+// this way we can load this at compile time
+// include_str looks into the same folder from where it is called
+const STYLE_FILE: &str = include_str!("main.css");
+// loading from file is not working with yew = { version="0.19.3" }
 
 #[derive(Serialize, Deserialize)]
 struct MyObject {
@@ -42,23 +47,25 @@ pub fn app() -> Html {
 
 #[styled_component(AppStyle)]
 pub fn app_style() -> Html {
-    let stylesheet = style!(
-        r#"
-            h2 {
-                color: red;
-            }
-            p1 {
-                color: orange;
-            }
-        "#
-    )
-    .unwrap();
+    // let stylesheet = style!(
+    //     r#"
+    //         h2 {
+    //             color: red;
+    //         }
+    //         p1 {
+    //             color: orange;
+    //         }
+    //     "#
+    // )
+
+    // like this we can load style form css files
+    let stylesheet = Style::new(STYLE_FILE).unwrap();
 
     html! {
         <div class={stylesheet}>
             <h2>{"Hello Red"}</h2>
-            <p1>{"Hello Orange"}</p1>
-            <h3 class={css!("color: white; font-size: 55px;")}>{"Hello inline css"}</h3>
+            <p>{"Hello Orange"}</p>
+            <h3>{"Hello inline css"}</h3>
         </div>
     }
 }
