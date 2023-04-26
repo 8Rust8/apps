@@ -1,0 +1,15 @@
+h2 {
+   color: red;
+}
+
+h3 {
+  color: white; 
+  }
+
+p {
+   color: orange;
+}
+
+* {
+  font-size: 50px;
+}
