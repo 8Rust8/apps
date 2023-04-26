@@ -38,7 +38,7 @@ pub fn main_title(props: &Props) -> Html {
     .unwrap();
     
     // calling back
-    &props.on_load.emit("Calling back from main_title component".to_string());
+    &props.on_load.emit("main_title loaded".to_string());
     html! {
         <div class={stylesheet}>
             <h1 class={&props.color.color_to_string()}>{ &props.title }</h1>
